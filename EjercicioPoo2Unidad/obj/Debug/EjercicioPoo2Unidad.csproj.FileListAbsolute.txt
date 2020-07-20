@@ -1,0 +1,7 @@
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\bin\Debug\EjercicioPoo2Unidad.exe.config
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\bin\Debug\EjercicioPoo2Unidad.exe
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\bin\Debug\EjercicioPoo2Unidad.pdb
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\obj\Debug\EjercicioPoo2Unidad.csprojAssemblyReference.cache
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\obj\Debug\EjercicioPoo2Unidad.csproj.CoreCompileInputs.cache
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\obj\Debug\EjercicioPoo2Unidad.exe
+D:\Disco local\disco\IV-Ciclo\POO\Amor-Kiara\EjercicioPoo2Unidad\EjercicioPoo2Unidad\obj\Debug\EjercicioPoo2Unidad.pdb
