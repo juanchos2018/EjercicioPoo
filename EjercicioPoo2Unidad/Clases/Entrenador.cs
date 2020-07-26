@@ -12,6 +12,7 @@ namespace EjercicioPoo2Unidad.Clases
         public string id_entrenador { get; set; }
         public DateTime fecha_registro { get; set; }   
         public Club club { get; set; }
+      
 
         public void registrEntrenador(Entrenador o)
         {
@@ -37,11 +38,12 @@ namespace EjercicioPoo2Unidad.Clases
     
         public List<Entrenador> ListarEntrenadorClub()
         {
-              List<Entrenador> lista = new List<Entrenador>();
-            //   var quer2 = Program.ListdeEntrenador.Join(Program.ListdeClubes, e=>e.id_entrenador,c=>c. )
-            var quer2 = (from pd in Program.ListdeEntrenador
+             List<Entrenador> lista = new List<Entrenador>();
+       
+            var query = (from pd in Program.ListdeEntrenador
+
                          join od in Program.ListdeClubes on pd.club.codigo_club equals od.codigo_club
-                         orderby od.codigo_club
+                         orderby od.nombre_club
                          select new
                          {
                              od.codigo_club,
@@ -53,10 +55,10 @@ namespace EjercicioPoo2Unidad.Clases
                          }).ToList();
 
 
-            foreach (var item in quer2)
+            foreach (var item in query)
             {
                 Club a = new Club();
-                a.nombre_club = item.nombre_club;
+                a.nombre_club = item.nombre;
                 a.codigo_club = item.codigo_club;
                 lista.Add(new Entrenador()
                 {
@@ -90,12 +92,12 @@ namespace EjercicioPoo2Unidad.Clases
             return exi;
         }
 
-            public Entrenador datos(string code)
-            {
+       public Entrenador datos(string code)
+         {
                 var doc = new Entrenador();
                 doc = Program.ListdeEntrenador.Where(x => x.id_entrenador == code).SingleOrDefault();
                 return doc;
-            }
+         }
 
 
     }

@@ -20,8 +20,11 @@ namespace EjercicioPoo2Unidad.Clases
         public List<Club> ListarClub()
         {
 
-         //   List<Club> lista = new List<Club>();
+            //   List<Club> lista = new List<Club>();
+
+          //  var q = Program.ListdeClubes.ToList();
             var query = new List<Club>();
+
             foreach (var item in Program.ListdeClubes)
             {
                 query.Add(item);

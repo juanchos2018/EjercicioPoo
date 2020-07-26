@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -15,19 +16,38 @@ namespace EjercicioPoo2Unidad
 
 
         public static List<Club> ListdeClubes = new List<Club>();
-
         public static List<Entrenador> ListdeEntrenador = new List<Entrenador>();
         public static List<Jugador> ListdeJugador = new List<Jugador>();
         public static List<Medico> ListdeMedicos = new List<Medico>();
         public static List<EntrenadorClub> ListEntrendorClub = new List<EntrenadorClub>();
         public static List<Club_Jugador> ListJugadorClub = new List<Club_Jugador>();
+        public static List<Partido> ListEquipoJugar = new List<Partido>();
+
+        public static int id_partido=1;
         static void Main(string[] args)
         {
+
+            ///
+
+            //int n1;
+            //int n2;
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    n1 = rd1.Next(0, 7);
+            //    n2 = rd1.Next(0, 7);
+
+            //    while (n1 == n2)
+            //    {
+            //        n2 = rd1.Next(0, 7);
+            //    }
+
+            //    Console.WriteLine(n1 + "   ------------    " + n2);
+            //    Thread.Sleep(2000);
+            //}
             KemerDAtos();
-
             menu();
-
-
+        
+          
             Console.ReadKey();
 
         }
@@ -41,18 +61,19 @@ namespace EjercicioPoo2Unidad
             Console.WriteLine(" 4 ) Registrar Medico  ");
             Console.WriteLine(" 5 ) Registrar Nutricionista  ");
 
-
             Console.WriteLine(" 6 ) Listar Club  ");
             Console.WriteLine(" 7 ) Listar Entrenador  ");
             Console.WriteLine(" 8 ) Listar Jugadores  ");
             Console.WriteLine(" 9 ) Listar Medicos  ");
-
             Console.WriteLine(" 10 ) Asignar Club a Entrenador ");
             Console.WriteLine(" 11 ) Asignar Jugador  a Club ");
 
 
             Console.WriteLine(" 12 ) Ver Club -Entrenador  Todos ");
             Console.WriteLine(" 13 ) Ver Club -Jugador Todos ");
+            Console.WriteLine(" 14 ) Registrar  Club para el Partido");
+            Console.WriteLine(" 15 ) Empezar Partido");
+            Console.WriteLine(" 16 ) Resultados ...");
             Console.WriteLine("============================================");
 
 
@@ -102,9 +123,198 @@ namespace EjercicioPoo2Unidad
                 case "13":
                     verEntrenadñlistaLcubJUgdor();
                     break;
+                case "14":
+                    RegistrarPartido();
+                    break;
+                case "15":
+
+                    EmpezarPartido();
+                //    verResultados();
+                    break;
+                case "16":
+
+                      //EmpezarPartido();
+                        verResultados();
+                    break;
                 default:
                     break;
             }
+
+        }
+
+        private static void EmpezarPartido()
+        {
+            try
+            {
+
+                Console.WriteLine("lista de equipos por Jugar");
+                Console.WriteLine("#            Nomre Club               Nombre Club");
+                foreach (Partido item in ListEquipoJugar)
+                {
+                    if (item.estadopartido.Equals("NoComienza"))
+                    {
+                        Console.WriteLine(item.id_partido + "    " + item.nombre_equipo_1 + "  " + item.nombre_equipo_2 + "  " + item.estadopartido);
+
+                    }
+
+                }
+
+                Console.WriteLine("elija que numero");
+                string opcion = Console.ReadLine();
+                Partido o = new Partido();
+                string c1 = o.datos(opcion).codigo_equipo_1;
+                string c2 = o.datos(opcion).codigo_equipo_2;
+
+                QueComienzeElJuego(c1, c2, opcion);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        
+        }
+
+        private static void QueComienzeElJuego(string c1, string c2, string id)
+        {
+            Club no = new Club();
+            Partido o = new Partido();
+            string nombre1 = no.datos(c1).nombre_club;
+            string nombre2 = no.datos(c2).nombre_club;
+            Random rd1 = new Random();
+            int n1 = 0;
+            int n2 = 0;
+            int t;
+            Console.WriteLine(nombre1 + "                   " + nombre2);
+            Console.WriteLine(n1 + "   ------------    " + n2);
+            for (int i = 0; i < 7; i++)
+            {
+                t = rd1.Next(0, 2); //0   1
+                if (t == 1)
+                {
+                    n1++;  //
+                }
+                else
+                {
+                    n2++;//0
+                }
+                Console.WriteLine(n1 + "   ------------    " + n2);
+                Thread.Sleep(2000);
+            }
+
+            string equipoganador;
+            Console.WriteLine("-- Resultado -- ");
+            if (n1 > n2)
+            {
+                Console.WriteLine("El ganador es club " + nombre1);
+                equipoganador = nombre1;
+            }
+            else if (n1 == n2)
+            {
+                Console.WriteLine("Empate");
+                equipoganador = "Emapate";
+            }
+            else
+            {
+                Console.WriteLine("El ganador es Equipo 2" + nombre2);
+                equipoganador = nombre2;
+            }
+
+            Partido ob = new Partido();
+            foreach (Partido item in ListEquipoJugar)
+            {
+                if (item.id_partido.Equals(id))
+                {
+                    item.estadopartido = "Terminado";
+                    item.goles_equipo_1 = n1;
+                    item.goles_equipo_2 = n2;
+                    item.fecha = DateTime.Now;
+                    item.equipoGanador = equipoganador;
+                }
+            }
+
+
+            Console.WriteLine("Temino");
+            Console.WriteLine("----Enter para continuar");
+            Console.ReadLine();
+              menu();
+        }
+
+        private static void verResultados()
+        {
+            Console.WriteLine("===============================      RESULTADOS       ================================\n");
+            Console.WriteLine("===============================================================================\n");
+            foreach (Partido item in ListEquipoJugar)
+            {
+                if (item.estadopartido.Equals("Terminado"))
+                {
+
+                    Console.WriteLine("         " + item.nombre_equipo_1 + "  ( " + item.goles_equipo_1 + "," + item.goles_equipo_2 + " )" + item.nombre_equipo_2 + "      " + item.estadopartido + "-------------------   " + item.equipoGanador);
+
+                }
+
+            }
+
+            Console.WriteLine("===============================================================================\n");   
+     
+
+        }
+
+        private static void RegistrarPartido()
+        {
+
+            string[] equipo = new string[2];
+            int contador = 0;
+            Club c1 = new Club();
+            Console.WriteLine("list de clubs");
+            foreach (var item in c1.ListarClub())
+            {
+                Console.WriteLine("            " + item.codigo_club + "  " + item.nombre_club);
+
+            }
+
+            for (int i = 0; i < equipo.Length; i++)
+            {
+                Console.WriteLine("Elije  codigo el club ");
+                string coodigo = Console.ReadLine();              
+                equipo[contador] = coodigo;
+                contador++;
+
+            }
+
+            Partido p = new Partido();
+            Club no = new Club();
+          
+            string code1 =equipo[0];
+            string code2 = equipo[1];
+
+            string n1 = no.datos(code1).nombre_club;
+            string n2 = no.datos(code2).nombre_club;
+
+            p.id_partido = id_partido.ToString();
+
+
+            p.codigo_equipo_1 = equipo[0];
+            p.codigo_equipo_2 = equipo[1];
+
+            p.nombre_equipo_1 = n1;
+            p.nombre_equipo_2 = n2;
+            p.fecha = DateTime.Now;
+            p.estadopartido = "NoComienza";
+            p.RegistrarPartido(p);
+
+            id_partido++;          
+
+            Console.WriteLine("Registrado");
+
+            Console.Clear();
+            menu();
+
+         
+
+        
+                
+
 
         }
 
@@ -112,16 +322,21 @@ namespace EjercicioPoo2Unidad
         {
 
             Club_Jugador o = new Club_Jugador();
-            Console.WriteLine("-------------------ide juadir       id  club");
+            Console.WriteLine("----------------   club      Nombre jugador                  tipo");
             foreach (Club_Jugador item in o.litarTodo())
             {
-                Console.WriteLine("------------"+item.id_jugador + "  ,  " + item.id_club);
+               // Console.WriteLine("------------"+item.id_jugador + "  ,  "  +item.id_club);
+                Console.WriteLine(" |   " + item.club.nombre_club + ",     " + item.jugador.nombre + ", " + item.demarcacion);
             }
+
+            menu();
         }
 
         private static void AsignarClub_Jugador()
         {
             Jugador j = new Jugador();
+
+            listarJugador2();
 
             Console.WriteLine("------------------------Agregar jugadir a un club--- \n");
             bool existejuador = true;
@@ -246,7 +461,9 @@ namespace EjercicioPoo2Unidad
             {
                 Console.WriteLine("      "+item.club.codigo_club + "," + item.club.nombre_club + " ." + item.entrenador.id_entrenador + " , " + item.entrenador.nombre);
                 
-            }            
+            }
+            menu();
+
         }
 
         private static void AsignarClubEntrenador()
@@ -268,7 +485,8 @@ namespace EjercicioPoo2Unidad
             {
                 Console.WriteLine("----------------escriba el codigo delentrenadir ---");
                  code_entreador = Console.ReadLine();
-                if (e.existe(code_entreador))
+                if (e.existe(code_entreador))//
+                    
                 {
                     nombre_entrenador = e.datos(code_entreador).nombre;
                     exi = false;
@@ -280,6 +498,7 @@ namespace EjercicioPoo2Unidad
                 }
 
             }
+
             Console.WriteLine("-----------------Elijio el entrandor  : " + nombre_entrenador);
             Club clu = new Club();
 
@@ -309,17 +528,10 @@ namespace EjercicioPoo2Unidad
                 }               
             }
 
-            Console.WriteLine("----------Elijio ek  Clucb + ");
+            Console.WriteLine("----------Elijio ek  Clucb + "+ nomnbre_club);
 
             EntrenadorClub entre = new EntrenadorClub();
-
-            //e.id_entrenador = code_entreador;
-            //e.nombre = nombre_entrenador;
-            //clu.codigo_club = id_club;
-            //clu.nombre_club = nombre_entrenador;
-            //entre.fecha_registro = DateTime.Now;
-            //entre.entrenador = e;
-            //entre.club = clu;
+             
 
             entre.id_entrenador = code_entreador;
             entre.id_club = id_club;
@@ -328,10 +540,7 @@ namespace EjercicioPoo2Unidad
             Console.WriteLine("REtgistradi entrenadir al club we");
 
             Console.Clear();
-
             menu();
-
-
         }
 
         private static void KemerDAtos()
@@ -350,6 +559,19 @@ namespace EjercicioPoo2Unidad
             clu3.codigo_club = "3";
             clu3.nombre_club = "River Plate";
             clu3.RegistrarClub(clu3);
+
+
+            Club clu4 = new Club();
+            clu4.codigo_club = "4";
+            clu4.nombre_club = "La U";
+            clu4.RegistrarClub(clu4);
+
+            Club clu5 = new Club();
+            clu5.codigo_club = "5";
+            clu5.nombre_club = "Alianza Lima";
+            clu5.RegistrarClub(clu5);
+
+
 
 
             Entrenador e1 = new Entrenador();
@@ -471,7 +693,19 @@ namespace EjercicioPoo2Unidad
             }
             menu();
         }
+        private static void listarJugador2()
+        {
+            Jugador o = new Jugador();
+            Console.WriteLine("--------------------------LISTA DE JUGADORES------\n");
+            Console.WriteLine(" ------------ Codio jugadr | nombre mjuagdir  ");
 
+            foreach (Jugador item in o.ListaJuagador())
+            {
+                Console.WriteLine("-----------------   " + item.id_jugador + " , " + item.nombre);
+
+            }
+         
+        }
 
         Demarcacion demarcar;
         public Demarcacion Demarcar
@@ -491,7 +725,7 @@ namespace EjercicioPoo2Unidad
         private static void registroJugador()
         {
             Jugador o = new Jugador();
-            Club o1 = new Club();
+         //   Club o1 = new Club();
             Console.WriteLine("codigo jugador");
 
             o.id_jugador = Console.ReadLine();
@@ -503,62 +737,7 @@ namespace EjercicioPoo2Unidad
             Console.WriteLine("Registrado Jugador  ");
             Console.Clear();
 
-            //   Console.WriteLine(" Tipo de Demarcacion");
-            ////   Demarcacion demarcacion;
-            //   Console.WriteLine("  1) Tipo : " + Demarcacion.arquero);
-            //   Console.WriteLine("  2) Tipo : " + Demarcacion.defensa);
-            //   Console.WriteLine("  3) Tipo : " + Demarcacion.delantero);
-            //   Console.WriteLine("  4) Tipo : " + Demarcacion.volante);
-
-            //   string op = Console.ReadLine();
-            //   switch (op)
-            //   {
-            //       case "1":
-            //           o.demarcacion = Demarcacion.arquero;
-            //           break;
-            //       case "2":
-            //           o.demarcacion = Demarcacion.defensa;
-            //           break;
-            //       case "3":
-            //           o.demarcacion = Demarcacion.delantero;
-            //           break;
-            //       case "4":
-            //           o.demarcacion = Demarcacion.volante;
-            //           break;
-            //       default:
-            //           Console.WriteLine(" opcion no valida    ");
-            //           break;
-            //   }
-            ///  Demarcacion demarcacion;
-            ///  
-            //    var a = Demarcacion.arquero;
-
-            //  demarcar = Demarcacion.arquero;
-            //  o.demarcacion =demarcacion.;
-
-            //Console.WriteLine("Elija a que club pertenece \n");
-            //Console.WriteLine("Codigo  Club   ,   Nombre Club");
-            //foreach (Club item in o1.ListarClub())
-            //{
-            //    Console.WriteLine(item.codigo_club + " ," + item.nombre_club);
-
-            //}
-
-            //string codigoclub = Console.ReadLine();
-            //if (o1.exixteclub(codigoclub))
-            //{
-            //    o1.codigo_club = codigoclub;
-            //    o.club = o1;
-            //    o.fecha_registro = DateTime.Now;
-            //    o.RegistrarJugador(o);
-            //    Console.WriteLine("Registrado Jugador  ");
-
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Codigo  de club no existe ");
-
-            //}
+         
 
             menu();
         }
@@ -566,14 +745,13 @@ namespace EjercicioPoo2Unidad
         private static void listarEntrenador()
         {
             Entrenador o = new Entrenador();
-
             Console.WriteLine("--------------------------LISTA DE ENTRENADORES------\n");
-            Console.WriteLine(" ------------Codio club | nombre club  |  cid entrenador |  nombre entrenador");
+            Console.WriteLine(" ------------  cid entrenador |  nombre entrenador  |   fECHA");
 
             foreach (Entrenador item in o.ListaEntrenador())
             {
                 //  Console.WriteLine( item.club.codigo_club+"   , "+ item.club.nombre_club+",  "+item.id_entrenador+",  "+item.nombre);
-                Console.WriteLine("----------------- "+item.id_entrenador + "   , " + item.nombre);
+                Console.WriteLine("----------------- "+item.id_entrenador + "   , " + item.nombre+ "  "  + item.fecha_registro);
             }
             menu();
         }
@@ -581,7 +759,7 @@ namespace EjercicioPoo2Unidad
         private static void registroEntrenador()
         {
             Entrenador o = new Entrenador();
-            Club o1 = new Club();
+         
             Console.WriteLine("codigo entrenador");
 
             o.id_entrenador = Console.ReadLine();
@@ -594,30 +772,7 @@ namespace EjercicioPoo2Unidad
             o.registrEntrenador(o);
             Console.WriteLine("Registrado Entrenador  ");
 
-            //Console.WriteLine("Elija a que club pertenece \n");
-            //Console.WriteLine("Codigo  Club   ,   Nombre Club");
-
-            //foreach (Club item in o1.ListarClub())
-            //{
-            //    Console.WriteLine(item.codigo_club + " ," + item.nombre_club);
-
-            //}
-
-            //string codigoclub = Console.ReadLine();
-            //if (o1.exixteclub(codigoclub))
-            //{
-            //    o1.codigo_club = codigoclub;
-            //    o.club = o1;
-            //    o.fecha_registro = DateTime.Now;
-            //    o.registrEntrenador(o);
-            //    Console.WriteLine("Registrado Entrenador  ");
-
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Codigo  de club no existe ");
-
-            //}
+          
 
             menu();
 
@@ -629,10 +784,11 @@ namespace EjercicioPoo2Unidad
             Club o = new Club();
 
             Console.WriteLine("--------------------------LISTA DE CLUBES------\n");
+            Console.WriteLine("                codi club-  Nombe Club");
             foreach (Club item in o.ListarClub())
             {
 
-                Console.WriteLine(item.codigo_club+" ,"+ item.nombre_club);
+                Console.WriteLine("              "+item.codigo_club+"    "+ item.nombre_club);
             }
            // Console.Clear();
             menu();

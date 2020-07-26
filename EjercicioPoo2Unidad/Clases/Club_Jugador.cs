@@ -31,14 +31,52 @@ namespace EjercicioPoo2Unidad.Clases
 
             List<Club_Jugador> lista = new List<Club_Jugador>();
 
-            var query = Program.ListJugadorClub.ToList();
-            foreach (var item in query)
+            var quer = (from p1 in Program.ListJugadorClub
+                        join p2 in Program.ListdeClubes on p1.id_club equals p2.codigo_club
+                        join p3 in Program.ListdeJugador on p1.id_jugador equals p3.id_jugador
+                        orderby p1.club                        
+                        select new
+                        {
+                            p2.codigo_club,
+                            p2.nombre_club,
+                            p3.nombre,
+                            p3.id_jugador,
+                            p1.demarcacion
+
+                        }).ToList();
+
+            foreach (var item in quer)
             {
-                lista.Add(item);
+                Jugador j = new Jugador();
+                Club c = new Club();
+                j.id_jugador = item.id_jugador;
+                j.nombre = item.nombre;
+                c.nombre_club = item.nombre_club;
+                c.codigo_club = item.codigo_club;
+                j.demarcacion = item.demarcacion;
+
+                lista.Add(new Club_Jugador()
+                {
+                    jugador = j,
+                    club = c,
+                    demarcacion = demarcacion
+
+                });
 
             }
 
             return lista;
+
+            //List<Club_Jugador> lista = new List<Club_Jugador>();
+
+            //var query = Program.ListJugadorClub.ToList();
+            //foreach (var item in query)
+            //{
+            //    lista.Add(item);
+
+            //}
+
+            //return lista;
         }
 
         public List<Club_Jugador> litarClubJugador_idClub(string id_club)

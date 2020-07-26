@@ -32,7 +32,7 @@ namespace EjercicioPoo2Unidad.Clases
             {
                 exi = true;
             }
-            else
+            else 
             {
                 exi = false;
             }
@@ -50,59 +50,21 @@ namespace EjercicioPoo2Unidad.Clases
 
         public List<Jugador> ListaJuagador()
         {
-            List<Jugador> lista = new List<Jugador>();
+            //List<Jugador> lista = new List<Jugador>();
 
-            var query = Program.ListdeJugador.ToList();
-            foreach (var item in query)
-            {
-                lista.Add(item);
-
-            }
-
-            return lista;
-
-        }
-
-        public List<Jugador> ListarJugadorClub()
-        {
-            List<Jugador> lista = new List<Jugador>();
-            //var quer3 = Program.ListdeEntrenador.Join(Program.ListdeClubes, e => e.id_entrenador,x).t;
-
-
-         //   var quer2 = (from pd in Program.ListdeJugador
-            //             join od in Program.ListdeClubes on pd.club.codigo_club equals od.codigo_club
-            //             orderby od.codigo_club
-            //             select new
-            //             {
-            //                 od.codigo_club,
-            //                 od.nombre_club,
-            //                 pd.id_jugador,
-            //                 pd.nombre,
-            //                 pd.apellido,
-            //                 pd.demarcacion
-
-            //             }).ToList();
-
-
-            //foreach (var item in quer2)
+            //var query = Program.ListdeJugador.ToList();
+            //foreach (var item in query)
             //{
-            //    Club a = new Club();
-            //    a.nombre_club = item.nombre_club;
-            //    a.codigo_club = item.codigo_club;
-            //    lista.Add(new Jugador()
-            //    {
-            //        id_jugador = item.id_jugador,
-            //        nombre = item.nombre,
-            //        apellido = item.apellido,
-            //       club = a,
-            //        demarcacion=item.demarcacion
-            //    });
+            //    lista.Add(item);
 
             //}
 
-            return lista;
+            var query = Program.ListdeJugador.ToList();
+            return query;
 
 
         }
+
+
     }
 }

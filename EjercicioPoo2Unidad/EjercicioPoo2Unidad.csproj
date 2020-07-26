@@ -51,12 +51,14 @@
     <Compile Include="Clases\Jugador.cs" />
     <Compile Include="Clases\Medico.cs" />
     <Compile Include="Clases\model.cs" />
+    <Compile Include="Clases\Partido.cs" />
     <Compile Include="Clases\Persona.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EjercicioPoo2Unidad.Clases.Club" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAgAAAAAAAAAAAAEAAAAAAACABAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Clases\Club.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Club_Jugador" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAhAIAAAAAAEAAAgAAAAAAAAIAAAAAABAA=</HashCode>
+      <FileName>Clases\Club_Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Entrenador" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IABAAAAAAAAAAAAAQAAAAAAABAAAEACAAYAAAAAAAAA=</HashCode>
+      <FileName>Clases\Entrenador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.EntrenadorClub" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAQAAAAEAABAAAIAAAAIAAAAAABAA=</HashCode>
+      <FileName>Clases\EntrenadorClub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Jugador" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAQAAAAAAAgAAQAACAAQAAAAAAAAA=</HashCode>
+      <FileName>Clases\Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Medico" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAIAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Clases\Medico.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.model" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clases\model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Partido" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAQgQAAAAAAAQAAAAAAEAAAAACEAIAAAAIQAAA=</HashCode>
+      <FileName>Clases\Partido.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Clases.Persona" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clases\Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EjercicioPoo2Unidad.Program" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DgAAAAAAgIAIAAEAAACAgogAEIIgAIEAggABBQABSJA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="EjercicioPoo2Unidad.Clases.Demarcacion" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABIgA=</HashCode>
+      <FileName>Clases\Demarcacion.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
